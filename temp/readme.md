@@ -1,0 +1,1 @@
+Storage to save the temporal images from Upload page from React.
