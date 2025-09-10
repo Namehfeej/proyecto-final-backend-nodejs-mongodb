@@ -39,7 +39,7 @@ export const createProduct = async (req, res) => {
 
         const newProd = await Products.create(
             {...body, 
-            img: `/images/${image._id}`
+            img: `images/${image._id}`
             }
         );
 
