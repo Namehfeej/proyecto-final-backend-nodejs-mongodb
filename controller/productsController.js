@@ -83,7 +83,7 @@ export const getProducts = async (req, res) => {
             .skip(skip)
             .limit(documentsPerPage)
 
-            const productWithImage = products.map(({_doc}) => ({..._doc, img: `${!prod.img.includes("http") ? process.env.API_BASE_URL : ""}${_doc.img}`}))
+            const productWithImage = products.map(({_doc}) => ({..._doc, img: `${!_doc.img.includes("http") ? process.env.API_BASE_URL : ""}${_doc.img}`}))
         res.json({
             ok: true,
             products: productWithImage,
