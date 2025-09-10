@@ -39,7 +39,7 @@ export const createProduct = async (req, res) => {
 
         const newProd = await Products.create(
             {...body, 
-            img: `${process.env.API_BASE_URL}/images/${image._id}`
+            img: `/images/${image._id}`
             }
         );
 
@@ -83,10 +83,10 @@ export const getProducts = async (req, res) => {
             .skip(skip)
             .limit(documentsPerPage)
 
-
+            const productWithImage = products.map(({_doc}) => ({..._doc, img: `${!prod.img.starts("http") ? process.env.API_BASE_URL : ""}${_doc.img}`}))
         res.json({
             ok: true,
-            products,
+            products: productWithImage,
             pageNumber: parseInt(query.pageNumber) || 1,
             totalPages: Math.ceil(totalDocs / documentsPerPage)
         })
